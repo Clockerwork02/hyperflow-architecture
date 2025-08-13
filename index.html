@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Technical Architecture - HyperFlow Protocol</title>
-    <!-- ACTUAL Teal Mint Green: 1755081660482 -->
+    <!-- Complete Teal Mint: 1755082333778 -->
     <style>
         * {
             margin: 0;
@@ -301,7 +301,87 @@
     </table>
 </div>
 
-<div style="text-align: center; margin-top: 40px;">
+<h3>Integration Architecture</h3>
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>Protocol</th>
+                <th>Integration Type</th>
+                <th>Functionality</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>HyperCore</strong></td>
+                <td>Native Precompile</td>
+                <td>Orderbook trading, delta-neutral strategies</td>
+            </tr>
+            <tr>
+                <td><strong>HyperSwap</strong></td>
+                <td>Direct Contract</td>
+                <td>AMM liquidity aggregation</td>
+            </tr>
+            <tr>
+                <td><strong>Chainlink</strong></td>
+                <td>Oracle Integration</td>
+                <td>Price feeds and automation</td>
+            </tr>
+            <tr>
+                <td><strong>LayerZero</strong></td>
+                <td>Cross-chain Messaging</td>
+                <td>Multi-chain asset bridging</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h3>Core Protocol Components</h3>
+
+<div class="highlight-section">
+    <h4>Yield Optimization Engine</h4>
+    <p>Advanced algorithms continuously monitor and optimize yield opportunities across multiple protocols and chains.</p>
+    
+    <ul>
+        <li><strong>Delta-Neutral Strategies:</strong> Market-neutral positions for consistent returns</li>
+        <li><strong>Automated Rebalancing:</strong> Dynamic portfolio optimization</li>
+        <li><strong>Risk Assessment:</strong> Real-time monitoring and mitigation</li>
+        <li><strong>Gas Optimization:</strong> Efficient transaction batching and routing</li>
+    </ul>
+</div>
+
+<h3>Security Architecture</h3>
+
+<div class="stats-grid">
+    <div class="stat-item">
+        <span class="stat-value">Multi-Sig</span>
+        <span class="stat-label">Treasury Protection</span>
+    </div>
+    <div class="stat-item">
+        <span class="stat-value">Audited</span>
+        <span class="stat-label">Smart Contracts</span>
+    </div>
+    <div class="stat-item">
+        <span class="stat-value">Time-Lock</span>
+        <span class="stat-label">Governance Delays</span>
+    </div>
+    <div class="stat-item">
+        <span class="stat-value">Emergency</span>
+        <span class="stat-label">Pause Functions</span>
+    </div>
+</div>
+
+<h4>Development Stack</h4>
+<ul>
+    <li><strong>Frontend:</strong> React/Next.js with Web3 integration</li>
+    <li><strong>Backend:</strong> Node.js with real-time data feeds</li>
+    <li><strong>Database:</strong> PostgreSQL for analytics and user data</li>
+    <li><strong>Monitoring:</strong> Comprehensive system health tracking</li>
+    <li><strong>API:</strong> RESTful and GraphQL endpoints</li>
+    <li><strong>Mobile:</strong> React Native application</li>
+</ul>
+
+<div style="text-align: center; margin-top: 50px;">
     <p><strong>For complete protocol details: <a href="https://clockerwork02.github.io">HyperFlow Protocol Whitepaper</a></strong></p>
 </div>
 
