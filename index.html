@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Technical Architecture - HyperFlow Protocol</title>
+    <title>HyperFlow Protocol - Technical Architecture</title>
     <style>
         * {
             margin: 0;
@@ -19,36 +19,16 @@
         }
         
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 40px 20px;
-        }
-        
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        
-        .back-link {
-            display: inline-block;
-            background: rgba(0, 212, 255, 0.1);
-            color: #00d4ff;
-            padding: 10px 20px;
-            border-radius: 6px;
-            text-decoration: none;
-            margin-bottom: 30px;
-            transition: all 0.3s ease;
-        }
-        
-        .back-link:hover {
-            background: rgba(0, 212, 255, 0.2);
-            transform: translateY(-2px);
+            padding: 40px 20px 60px 20px;
         }
         
         h1 {
             color: #00d4ff;
             font-size: 2.5rem;
-            margin-bottom: 10px;
+            text-align: center;
+            margin-bottom: 20px;
         }
         
         h2 {
@@ -71,6 +51,12 @@
             margin: 20px 0 8px 0;
         }
         
+        h5 {
+            color: #f8bbd9;
+            font-size: 1.1rem;
+            margin: 15px 0 8px 0;
+        }
+        
         p {
             margin-bottom: 15px;
             color: #cbd5e0;
@@ -81,125 +67,55 @@
             padding-left: 25px;
         }
         
-        ol {
-            margin: 15px 0;
-            padding-left: 25px;
-        }
-        
         li {
             margin-bottom: 8px;
             color: #cbd5e0;
         }
         
         strong {
-            color: #ffffff;
-            font-weight: 600;
+            color: #fff;
         }
         
         em {
-            color: #a0aec0;
+            color: #f8bbd9;
         }
         
-        code {
-            background: rgba(0, 212, 255, 0.1);
-            color: #00d4ff;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-family: monospace;
-            font-size: 0.9em;
-        }
-        
-        .code-block {
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(0, 212, 255, 0.3);
+        pre {
+            background: rgba(20, 30, 50, 0.8);
+            border: 1px solid rgba(77, 208, 225, 0.2);
             border-radius: 8px;
+            padding: 20px;
             margin: 20px 0;
             overflow-x: auto;
         }
         
-        .code-block pre {
-            padding: 20px;
-            margin: 0;
+        code {
+            color: #81c784;
+            font-family: 'Monaco', 'Consolas', monospace;
+            font-size: 0.9rem;
         }
         
-        .code-block code {
-            background: none;
-            color: #e2e8f0;
-            padding: 0;
-        }
-        
-        hr {
-            border: none;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.5), transparent);
-            margin: 30px 0;
-        }
-        
-        .table-container {
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(77, 208, 225, 0.3);
-            border-radius: 12px;
-            padding: 25px;
-            margin: 30px 0;
-            box-shadow: 0 4px 15px rgba(0, 212, 255, 0.1);
-        }
-        
-        .table-container h4 {
-            color: #00d4ff;
-            text-align: center;
+        .back-link {
+            display: inline-block;
+            color: #4dd0e1;
+            text-decoration: none;
             margin-bottom: 20px;
-            font-size: 1.4rem;
+            padding: 8px 16px;
+            border: 1px solid #4dd0e1;
+            border-radius: 6px;
+            transition: all 0.3s ease;
         }
         
-        .table-responsive {
-            overflow-x: auto;
-            border-radius: 8px;
-        }
-        
-        .data-table, .comparison-table {
-            width: 100%;
-            border-collapse: collapse;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        
-        .data-table th, .comparison-table th {
-            background: rgba(0, 212, 255, 0.2);
-            color: #ffffff;
-            padding: 15px 12px;
-            text-align: left;
-            font-weight: 600;
-            border-bottom: 2px solid rgba(0, 212, 255, 0.3);
-        }
-        
-        .data-table td, .comparison-table td {
-            padding: 12px;
-            border-bottom: 1px solid rgba(77, 208, 225, 0.2);
-            color: #cbd5e0;
-            background: rgba(0, 0, 0, 0.1);
-        }
-        
-        .data-table tr:nth-child(even) td, .comparison-table tr:nth-child(even) td {
-            background: rgba(0, 0, 0, 0.2);
-        }
-        
-        .data-table tr:hover td, .comparison-table tr:hover td {
-            background: rgba(0, 212, 255, 0.1);
-        }
-        
-        .hyperflow-advantage {
-            background: rgba(129, 199, 132, 0.2) !important;
-            color: #81c784 !important;
-            font-weight: 600;
-        }
-        
-        .comparison-table td:first-child {
-            font-weight: 600;
-            color: #ffffff;
+        .back-link:hover {
+            background: #4dd0e1;
+            color: #0a0f1c;
         }
         
         @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px 40px 15px;
+            }
+            
             h1 {
                 font-size: 2rem;
             }
@@ -208,91 +124,223 @@
                 font-size: 1.5rem;
             }
             
-            .container {
-                padding: 20px 15px;
-            }
-            
-            .table-container {
+            pre {
                 padding: 15px;
-                margin: 20px 0;
-            }
-            
-            .data-table th, .comparison-table th,
-            .data-table td, .comparison-table td {
-                padding: 8px 6px;
-                font-size: 0.9rem;
+                font-size: 0.8rem;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <a href="https://Clockerwork02.github.io" class="back-link">← Back to Main Whitepaper</a>
-        </div>
-        <h1>Technical Architecture</h1>
-
-<h2>Core Components</h2>
-
-<h3>Smart Vault System</h3>
-<p>The HyperFlow vault system employs automated strategies for yield optimization:</p>
-
-<div class="code-block">
-<pre><code>contract HyperFlowVault {
-    struct Strategy {
-        address target;
-        uint256 allocation;
-        uint256 riskScore;
-        uint256 expectedAPY;
-    }
-    
-    mapping(address => Strategy[]) public userStrategies;
-    
-    function optimizeYield(address user) external {
-        // Automated rebalancing logic
-        // Risk assessment algorithms
-        // Compound reward harvesting
-    }
-}</code></pre>
-</div>
-
-<h2>Security Framework</h2>
-<div class="table-container">
-    <h4>Security Measures</h4>
-    <div class="table-responsive">
-        <table class="data-table">
-            <thead>
-                <tr>
-                    <th>Component</th>
-                    <th>Implementation</th>
-                    <th>Purpose</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>OpenZeppelin Libraries</strong></td>
-                    <td>Industry-standard modules</td>
-                    <td>Proven security patterns</td>
-                </tr>
-                <tr>
-                    <td><strong>Formal Verification</strong></td>
-                    <td>Mathematical proofs</td>
-                    <td>Contract correctness</td>
-                </tr>
-                <tr>
-                    <td><strong>Multi-Sig Governance</strong></td>
-                    <td>5-of-9 signatures</td>
-                    <td>Distributed control</td>
-                </tr>
-                <tr>
-                    <td><strong>Timelock Contracts</strong></td>
-                    <td>48-hour delays</td>
-                    <td>Parameter change protection</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+        <a href="https://Clockerwork02.github.io" class="back-link">← Back to Main Documentation</a>
+        
+        <h1>HyperFlow Protocol - Technical Architecture</h1><h2>System Overview</h2><p>HyperFlow Protocol is built as a modular DeFi infrastructure system on HyperEVM, designed to leverage the unique dual-block architecture and native orderbook integration that sets HyperEVM apart from other EVM chains.</p><h2>Core Architecture Components</h2><h3>1. Smart Contract System</h3><h4>Vault Management Contracts</h4>
+<pre><code class="language-solidity">// Core vault logic with yield optimization
+<p>contract HyperFlowVault {
+<p>    - Auto-compounding mechanisms
+<p>    - Multi-protocol yield routing
+<p>    - Emergency pause and withdrawal
+<p>    - Performance fee calculation
+<p>    - Risk parameter enforcement
+<p>}</p><p>// Strategy-specific implementations
+<p>contract DeltaNeutralStrategy {
+<p>    - HyperCore perp position management
+<p>    - Spot position hedging
+<p>    - Automatic rebalancing triggers
+<p>    - Profit/loss tracking
+<p>}
+<p></code></pre><h4>Aggregation & Routing Engine</h4>
+<pre><code class="language-solidity">// Cross-DEX trade routing
+<p>contract LiquidityAggregator {
+<p>    - HyperSwap integration
+<p>    - HyperBloom routing
+<p>    - HyperCore orderbook access
+<p>    - MEV protection mechanisms
+<p>    - Slippage optimization
+<p>}</p><p>// Cross-chain bridge management
+<p>contract CrossChainManager {
+<p>    - DeBridge integration
+<p>    - Hyperlane messaging
+<p>    - Asset custody and security
+<p>    - Bridge fee management
+<p>}
+<p></code></pre><h4>Governance & Token Contracts</h4>
+<pre><code class="language-solidity">// FLOW token with advanced features
+<p>contract FlowToken {
+<p>    - ERC-20 standard compliance
+<p>    - Staking mechanism integration
+<p>    - Governance voting weights
+<p>    - Revenue distribution logic
+<p>}</p><p>// Decentralized governance system
+<p>contract GovernanceModule {
+<p>    - Proposal creation and voting
+<p>    - Treasury management
+<p>    - Parameter adjustment controls
+<p>    - Multi-sig integration
+<p>}
+<p></code></pre><h3>2. HyperEVM-Specific Optimizations</h3><h4>Native Orderbook Integration</h4>
+<ul><li><strong>Precompile Access</strong>: Direct HyperCore orderbook read/write</li>
+<li><strong>Sub-Second Execution</strong>: Leverage 1-second finality for arbitrage</li>
+<li><strong>Dual-Block Architecture</strong>: Small blocks for simple operations, large blocks for complex strategies</li>
+<li><strong>Gas Optimization</strong>: Efficient use of 2M gas limit for quick transactions</li></p><h4>Performance Enhancements</h4>
+<li><strong>Batch Operations</strong>: Group multiple trades in large blocks (30M gas)</li>
+<li><strong>State Optimization</strong>: Minimize storage reads/writes for gas efficiency</li>
+<li><strong>Event Indexing</strong>: Optimized event emission for real-time monitoring</li>
+<li><strong>Memory Management</strong>: Efficient data structures for complex calculations</li></p><h3>3. Backend Infrastructure</h3><h4>Real-Time Data Processing</h4>
+<pre><code class="language-typescript">// WebSocket connections for live market data
+<p>class MarketDataManager {
+<p>    - HyperCore API integration
+<p>    - DEX price feed aggregation
+<p>    - Yield rate monitoring
+<p>    - Risk metric calculations
+<p>}</p><p>// Automated strategy execution
+<p>class StrategyEngine {
+<p>    - Position monitoring
+<p>    - Rebalancing triggers
+<p>    - Emergency exit conditions
+<p>    - Performance tracking
+<p>}
+<p></code></pre><h4>Database Architecture</h4>
+<pre><code class="language-sql">-- PostgreSQL schema for analytics
+<p>Tables:
+<li>user_positions: Real-time position tracking</li>
+<li>vault_performance: Historical yield data</li>
+<li>trading_history: Complete transaction records</li>
+<li>risk_metrics: Real-time risk assessments</li>
+<li>protocol_revenue: Fee collection and distribution</li>
+<p></code></pre><h3>4. Security Architecture</h3><h4>Access Control & Permissions</h4>
+<pre><code class="language-solidity">// Role-based access control
+<p>contract SecurityModule {
+<p>    bytes32 public constant ADMIN_ROLE = keccak256("ADMIN_ROLE");
+<p>    bytes32 public constant STRATEGY_MANAGER_ROLE = keccak256("STRATEGY_MANAGER_ROLE");
+<p>    bytes32 public constant EMERGENCY_ROLE = keccak256("EMERGENCY_ROLE");
+<p>    
+<p>    // Multi-signature requirements
+<p>    mapping(bytes32 => uint256) public roleThresholds;
+<p>    
+<p>    modifier onlyRole(bytes32 role) {
+<p>        require(hasRole(role, msg.sender), "Access denied");
+<p>        _;
+<p>    }
+<p>}
+<p></code></pre><h4>Oracle Security & Price Feeds</h4>
+<pre><code class="language-solidity">// Multi-source price validation
+<p>contract OracleManager {
+<p>    struct PriceData {
+<p>        uint256 price;
+<p>        uint256 timestamp;
+<p>        address source;
+<p>    }
+<p>    
+<p>    function getSecurePrice(address asset) external view returns (uint256) {
+<p>        PriceData[] memory sources = aggregatePrices(asset);
+<p>        validatePriceFeeds(sources);
+<p>        return calculateMedianPrice(sources);
+<p>    }
+<p>}
+<p></code></pre><h4>Emergency Systems</h4>
+<pre><code class="language-solidity">// Circuit breaker implementation
+<p>contract EmergencyControls {
+<p>    bool public emergencyStop = false;
+<p>    uint256 public constant MAX_TVL_DROP = 1000; // 10%
+<p>    uint256 public constant LARGE_WITHDRAWAL_THRESHOLD = 50000e18; // $50K
+<p>    
+<p>    modifier notPaused() {
+<p>        require(!emergencyStop, "Protocol paused");
+<p>        _;
+<p>    }
+<p>    
+<p>    function emergencyPause() external onlyRole(EMERGENCY_ROLE) {
+<p>        emergencyStop = true;
+<p>        emit EmergencyPause(block.timestamp);
+<p>    }
+<p>}
+<p></code></pre><h3>5. Frontend Architecture</h3><h4>React/Next.js Application</h4>
+<pre><code class="language-typescript">// Component structure
+<p>components/
+<p>├── Dashboard/          - Main user interface
+<p>├── VaultManager/       - Vault creation and management
+<p>├── Analytics/          - Performance and risk dashboards
+<p>├── Governance/         - Voting and proposal interface
+<p>├── Security/           - Security monitoring and alerts
+<p>├── Portfolio/          - Position tracking and management
+<p>└── Settings/           - User preferences and security
+<p></code></pre><h4>Web3 Integration</h4>
+<pre><code class="language-typescript">// Wallet and contract interactions
+<p>class Web3Manager {
+<p>    - MetaMask integration
+<p>    - Contract interaction layer
+<p>    - Transaction management
+<p>    - Error handling and retries
+<p>}</p><p>// Real-time updates
+<p>class SubscriptionManager {
+<p>    - WebSocket connections
+<p>    - Position updates
+<p>    - Price feed subscriptions
+<p>    - Event monitoring
+<p>}
+<p></code></pre><h2>Integration Layer</h2><h3>HyperEVM Ecosystem Integrations</h3><h4>DEX Integrations</h4>
+<li><strong>HyperSwap</strong>: Native AMM integration for spot trading</li>
+<li><strong>HyperBloom</strong>: Yield optimization and vault strategies</li>
+<li><strong>ProjectX</strong>: Additional liquidity sourcing</li>
+<li><strong>KittenSwap</strong>: Alternative routing options</li></p><h4>Lending/Borrowing Protocols</h4>
+<li><strong>HyperLend</strong>: Collateral management and borrowing</li>
+<li><strong>Cluster</strong>: Liquid staking integration</li>
+<li><strong>Tenderize</strong>: Additional staking options</li>
+<li><strong>HyperFlash</strong>: Flash loan capabilities</li></p><h4>Infrastructure Partners</h4>
+<li><strong>Hyperlane</strong>: Cross-chain messaging and bridging</li>
+<li><strong>DeBridge</strong>: Multi-asset bridge integration</li>
+<li><strong>The Graph</strong>: Data indexing and querying</li>
+<li><strong>Chainlink</strong>: Price feeds and automation</li></p><h3>External Integrations</h3><h4>Oracle Network</h4>
+<li><strong>HyperCore Orderbook</strong>: Primary price source</li>
+<li><strong>Chainlink Feeds</strong>: External market data</li>
+<li><strong>Custom Oracles</strong>: Yield rate aggregation</li>
+<li><strong>Time-Weighted Averages</strong>: Manipulation resistance</li></p><h4>Security Infrastructure</h4>
+<li><strong>OpenZeppelin</strong>: Battle-tested contract libraries</li>
+<li><strong>Multi-Sig Wallets</strong>: Gnosis Safe integration</li>
+<li><strong>Timelock Contracts</strong>: Governance execution delays</li>
+<li><strong>Emergency Pause</strong>: Circuit breaker mechanisms</li></p><h2>Data Architecture</h2><h3>On-Chain Data</h3>
+<li><strong>Transaction History</strong>: Complete audit trail</li>
+<li><strong>Position States</strong>: Real-time portfolio tracking</li>
+<li><strong>Governance Records</strong>: Voting and proposal history</li>
+<li><strong>Revenue Distribution</strong>: Transparent fee sharing</li></p><h3>Off-Chain Analytics</h3>
+<li><strong>Performance Metrics</strong>: Historical yield analysis</li>
+<li><strong>Risk Assessments</strong>: Real-time position monitoring</li>
+<li><strong>User Behavior</strong>: Interface optimization data</li>
+<li><strong>Market Intelligence</strong>: Cross-protocol trend analysis</li></p><h2>Security Architecture</h2><h3>Smart Contract Security</h3>
+<li><strong>Multi-Layer Audits</strong>: Certik, ConsenSys, Trail of Bits</li>
+<li><strong>Formal Verification</strong>: Critical function mathematical proofs</li>
+<li><strong>Bug Bounty Program</strong>: Ongoing security incentives</li>
+<li><strong>Gradual Deployment</strong>: Phased rollout with monitoring</li></p><h3>Operational Security</h3>
+<li><strong>Multi-Sig Treasury</strong>: Community-controlled funds</li>
+<li><strong>Timelock Governance</strong>: 48-hour execution delays</li>
+<li><strong>Emergency Procedures</strong>: Rapid response protocols</li>
+<li><strong>Insurance Coverage</strong>: Nexus Mutual integration</li></p><h3>User Security</h3>
+<li><strong>Non-Custodial Design</strong>: Users maintain asset control</li>
+<li><strong>Slippage Protection</strong>: Maximum loss parameters</li>
+<li><strong>Position Monitoring</strong>: Automated risk alerts</li>
+<li><strong>Recovery Mechanisms</strong>: Emergency withdrawal options</li></p><h2>Scalability & Performance</h2><h3>HyperEVM Optimization</h3>
+<li><strong>Gas Efficiency</strong>: Optimized for dual-block architecture</li>
+<li><strong>Parallel Processing</strong>: Concurrent strategy execution</li>
+<li><strong>State Management</strong>: Minimal storage footprint</li>
+<li><strong>Event Optimization</strong>: Efficient log emission</li></p><h3>Backend Scaling</h3>
+<li><strong>Microservices</strong>: Modular service architecture</li>
+<li><strong>Load Balancing</strong>: Distributed request handling</li>
+<li><strong>Caching Layer</strong>: Redis for fast data access</li>
+<li><strong>Database Optimization</strong>: Indexed queries and partitioning</li></p><h2>Monitoring & Analytics</h2><h3>Real-Time Monitoring</h3>
+<li><strong>System Health</strong>: Service uptime and performance</li>
+<li><strong>Transaction Success</strong>: Error rate tracking</li>
+<li><strong>User Activity</strong>: Interface engagement metrics</li>
+<li><strong>Protocol Performance</strong>: Yield and fee generation</li></p><h3>Business Intelligence</h3>
+<li><strong>TVL Tracking</strong>: Total value locked growth</li>
+<li><strong>User Retention</strong>: Cohort analysis and churn</li>
+<li><strong>Revenue Analytics</strong>: Fee collection and distribution</li>
+<li><strong>Competitive Analysis</strong>: Market position monitoring</li></ul><p>This technical architecture ensures HyperFlow Protocol can deliver high-performance DeFi services while maintaining security, scalability, and user experience standards expected in the modern DeFi ecosystem.
+        
+        <p style="text-align: center; margin-top: 40px; color: #4dd0e1;">
+            <strong>HyperFlow Protocol - Advanced DeFi Infrastructure for HyperEVM</strong>
+        </p>
     </div>
 </body>
 </html>
