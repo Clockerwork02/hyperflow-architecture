@@ -19,7 +19,7 @@
         }
         
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 40px 20px 60px 20px;
         }
@@ -80,12 +80,19 @@
             color: #f8bbd9;
         }
         
-        .content-card {
-            background: rgba(20, 30, 50, 0.6);
+        pre {
+            background: rgba(20, 30, 50, 0.8);
             border: 1px solid rgba(77, 208, 225, 0.2);
-            border-radius: 12px;
+            border-radius: 8px;
             padding: 20px;
             margin: 20px 0;
+            overflow-x: auto;
+        }
+        
+        code {
+            color: #81c784;
+            font-family: 'Monaco', 'Consolas', monospace;
+            font-size: 0.9rem;
         }
         
         .back-link {
@@ -116,6 +123,11 @@
             h2 {
                 font-size: 1.5rem;
             }
+            
+            pre {
+                padding: 15px;
+                font-size: 0.8rem;
+            }
         }
     </style>
 </head>
@@ -124,8 +136,7 @@
         <a href="https://Clockerwork02.github.io" class="back-link">← Back to Main Documentation</a>
         
         <h1>HyperFlow Protocol - Technical Architecture</h1><h2>System Overview</h2><p>HyperFlow Protocol is built as a modular DeFi infrastructure system on HyperEVM, designed to leverage the unique dual-block architecture and native orderbook integration that sets HyperEVM apart from other EVM chains.</p><h2>Core Architecture Components</h2><h3>1. Smart Contract System</h3><h4>Vault Management Contracts</h4>
-<p>```solidity
-<p>// Core vault logic with yield optimization
+<pre><code class="language-solidity">// Core vault logic with yield optimization
 <p>contract HyperFlowVault {
 <p>    - Auto-compounding mechanisms
 <p>    - Multi-protocol yield routing
@@ -139,9 +150,8 @@
 <p>    - Automatic rebalancing triggers
 <p>    - Profit/loss tracking
 <p>}
-<p>```</p><h4>Aggregation & Routing Engine</h4>
-<p>```solidity
-<p>// Cross-DEX trade routing
+<p></code></pre><h4>Aggregation & Routing Engine</h4>
+<pre><code class="language-solidity">// Cross-DEX trade routing
 <p>contract LiquidityAggregator {
 <p>    - HyperSwap integration
 <p>    - HyperBloom routing
@@ -155,9 +165,8 @@
 <p>    - Asset custody and security
 <p>    - Bridge fee management
 <p>}
-<p>```</p><h4>Governance & Token Contracts</h4>
-<p>```solidity
-<p>// FLOW token with advanced features
+<p></code></pre><h4>Governance & Token Contracts</h4>
+<pre><code class="language-solidity">// FLOW token with advanced features
 <p>contract FlowToken {
 <p>    - ERC-20 standard compliance
 <p>    - Staking mechanism integration
@@ -170,7 +179,7 @@
 <p>    - Parameter adjustment controls
 <p>    - Multi-sig integration
 <p>}
-<p>```</p><h3>2. HyperEVM-Specific Optimizations</h3><h4>Native Orderbook Integration</h4>
+<p></code></pre><h3>2. HyperEVM-Specific Optimizations</h3><h4>Native Orderbook Integration</h4>
 <ul><li><strong>Precompile Access</strong>: Direct HyperCore orderbook read/write</li>
 <li><strong>Sub-Second Execution</strong>: Leverage 1-second finality for arbitrage</li>
 <li><strong>Dual-Block Architecture</strong>: Small blocks for simple operations, large blocks for complex strategies</li>
@@ -179,8 +188,7 @@
 <li><strong>State Optimization</strong>: Minimize storage reads/writes for gas efficiency</li>
 <li><strong>Event Indexing</strong>: Optimized event emission for real-time monitoring</li>
 <li><strong>Memory Management</strong>: Efficient data structures for complex calculations</li></p><h3>3. Backend Infrastructure</h3><h4>Real-Time Data Processing</h4>
-<p>```typescript
-<p>// WebSocket connections for live market data
+<pre><code class="language-typescript">// WebSocket connections for live market data
 <p>class MarketDataManager {
 <p>    - HyperCore API integration
 <p>    - DEX price feed aggregation
@@ -193,18 +201,16 @@
 <p>    - Emergency exit conditions
 <p>    - Performance tracking
 <p>}
-<p>```</p><h4>Database Architecture</h4>
-<p>```sql
-<p>-- PostgreSQL schema for analytics
+<p></code></pre><h4>Database Architecture</h4>
+<pre><code class="language-sql">-- PostgreSQL schema for analytics
 <p>Tables:
 <li>user_positions: Real-time position tracking</li>
 <li>vault_performance: Historical yield data</li>
 <li>trading_history: Complete transaction records</li>
 <li>risk_metrics: Real-time risk assessments</li>
 <li>protocol_revenue: Fee collection and distribution</li>
-<p>```</p><h3>4. Security Architecture</h3><h4>Access Control & Permissions</h4>
-<p>```solidity
-<p>// Role-based access control
+<p></code></pre><h3>4. Security Architecture</h3><h4>Access Control & Permissions</h4>
+<pre><code class="language-solidity">// Role-based access control
 <p>contract SecurityModule {
 <p>    bytes32 public constant ADMIN_ROLE = keccak256("ADMIN_ROLE");
 <p>    bytes32 public constant STRATEGY_MANAGER_ROLE = keccak256("STRATEGY_MANAGER_ROLE");
@@ -218,9 +224,8 @@
 <p>        _;
 <p>    }
 <p>}
-<p>```</p><h4>Oracle Security & Price Feeds</h4>
-<p>```solidity
-<p>// Multi-source price validation
+<p></code></pre><h4>Oracle Security & Price Feeds</h4>
+<pre><code class="language-solidity">// Multi-source price validation
 <p>contract OracleManager {
 <p>    struct PriceData {
 <p>        uint256 price;
@@ -234,9 +239,8 @@
 <p>        return calculateMedianPrice(sources);
 <p>    }
 <p>}
-<p>```</p><h4>Emergency Systems</h4>
-<p>```solidity
-<p>// Circuit breaker implementation
+<p></code></pre><h4>Emergency Systems</h4>
+<pre><code class="language-solidity">// Circuit breaker implementation
 <p>contract EmergencyControls {
 <p>    bool public emergencyStop = false;
 <p>    uint256 public constant MAX_TVL_DROP = 1000; // 10%
@@ -252,9 +256,8 @@
 <p>        emit EmergencyPause(block.timestamp);
 <p>    }
 <p>}
-<p>```</p><h3>5. Frontend Architecture</h3><h4>React/Next.js Application</h4>
-<p>```typescript
-<p>// Component structure
+<p></code></pre><h3>5. Frontend Architecture</h3><h4>React/Next.js Application</h4>
+<pre><code class="language-typescript">// Component structure
 <p>components/
 <p>├── Dashboard/          - Main user interface
 <p>├── VaultManager/       - Vault creation and management
@@ -263,9 +266,8 @@
 <p>├── Security/           - Security monitoring and alerts
 <p>├── Portfolio/          - Position tracking and management
 <p>└── Settings/           - User preferences and security
-<p>```</p><h4>Web3 Integration</h4>
-<p>```typescript
-<p>// Wallet and contract interactions
+<p></code></pre><h4>Web3 Integration</h4>
+<pre><code class="language-typescript">// Wallet and contract interactions
 <p>class Web3Manager {
 <p>    - MetaMask integration
 <p>    - Contract interaction layer
@@ -278,7 +280,7 @@
 <p>    - Price feed subscriptions
 <p>    - Event monitoring
 <p>}
-<p>```</p><h2>Integration Layer</h2><h3>HyperEVM Ecosystem Integrations</h3><h4>DEX Integrations</h4>
+<p></code></pre><h2>Integration Layer</h2><h3>HyperEVM Ecosystem Integrations</h3><h4>DEX Integrations</h4>
 <li><strong>HyperSwap</strong>: Native AMM integration for spot trading</li>
 <li><strong>HyperBloom</strong>: Yield optimization and vault strategies</li>
 <li><strong>ProjectX</strong>: Additional liquidity sourcing</li>
@@ -334,10 +336,10 @@
 <li><strong>TVL Tracking</strong>: Total value locked growth</li>
 <li><strong>User Retention</strong>: Cohort analysis and churn</li>
 <li><strong>Revenue Analytics</strong>: Fee collection and distribution</li>
-<li><strong>Competitive Analysis</strong>: Market position monitoring</li></ul></p><p>This technical architecture ensures HyperFlow Protocol can deliver high-performance DeFi services while maintaining security, scalability, and user experience standards expected in the modern DeFi ecosystem.
+<li><strong>Competitive Analysis</strong>: Market position monitoring</li></ul><p>This technical architecture ensures HyperFlow Protocol can deliver high-performance DeFi services while maintaining security, scalability, and user experience standards expected in the modern DeFi ecosystem.
         
         <p style="text-align: center; margin-top: 40px; color: #4dd0e1;">
-            <strong>HyperFlow Protocol - Building the Future of DeFi Infrastructure</strong>
+            <strong>HyperFlow Protocol - Advanced DeFi Infrastructure for HyperEVM</strong>
         </p>
     </div>
 </body>
