@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Technical Architecture - HyperFlow Protocol</title>
-    <!-- Complete Teal Mint: 1755082333778 -->
+    <!-- Correct Teal Mint: 1755082423387 -->
     <style>
         * {
             margin: 0;
@@ -14,8 +14,8 @@
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #042f2e 0%, #0a2e2a 50%, #042f2e 100%);
-            color: #f0fdfa;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            color: #e2e8f0;
             line-height: 1.6;
             min-height: 100vh;
         }
@@ -51,7 +51,7 @@
         }
         
         h1 {
-            background: linear-gradient(135deg, #2dd4bf 0%, #99f6e4 50%, #14b8a6 100%);
+            background: linear-gradient(135deg, #2dd4bf 0%, #14b8a6 50%, #0d9488 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -69,7 +69,7 @@
         }
         
         .content {
-            background: rgba(4, 47, 46, 0.8);
+            background: rgba(30, 41, 59, 0.8);
             border: 1px solid rgba(45, 212, 191, 0.15);
             border-radius: 16px;
             padding: 50px;
@@ -138,7 +138,7 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            background: rgba(4, 47, 46, 0.9);
+            background: rgba(15, 23, 42, 0.9);
         }
         
         th {
@@ -155,7 +155,7 @@
         td {
             padding: 14px 20px;
             border-bottom: 1px solid rgba(45, 212, 191, 0.1);
-            color: #f0fdfa;
+            color: #e2e8f0;
             font-size: 0.95rem;
         }
         
@@ -168,11 +168,11 @@
         }
         
         tr:nth-child(even) {
-            background: rgba(4, 47, 46, 0.3);
+            background: rgba(30, 41, 59, 0.3);
         }
         
         .highlight-section {
-            background: linear-gradient(135deg, rgba(45, 212, 191, 0.08) 0%, rgba(153, 246, 228, 0.05) 100%);
+            background: linear-gradient(135deg, rgba(45, 212, 191, 0.08) 0%, rgba(20, 184, 166, 0.05) 100%);
             border: 1px solid rgba(45, 212, 191, 0.2);
             border-radius: 12px;
             padding: 30px;
@@ -187,7 +187,7 @@
             left: 0;
             right: 0;
             height: 3px;
-            background: linear-gradient(90deg, #2dd4bf 0%, #99f6e4 50%, #14b8a6 100%);
+            background: linear-gradient(90deg, #2dd4bf 0%, #14b8a6 50%, #0d9488 100%);
             border-radius: 12px 12px 0 0;
         }
         
@@ -199,7 +199,7 @@
         }
         
         .stat-item {
-            background: linear-gradient(135deg, rgba(45, 212, 191, 0.1) 0%, rgba(153, 246, 228, 0.05) 100%);
+            background: linear-gradient(135deg, rgba(45, 212, 191, 0.1) 0%, rgba(20, 184, 166, 0.05) 100%);
             border: 1px solid rgba(45, 212, 191, 0.2);
             border-radius: 12px;
             padding: 25px;
@@ -216,7 +216,7 @@
             display: block;
             font-size: 2.2rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #2dd4bf 0%, #99f6e4 100%);
+            background: linear-gradient(135deg, #2dd4bf 0%, #14b8a6 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -238,7 +238,7 @@
         }
         
         a:hover {
-            color: #99f6e4;
+            color: #14b8a6;
             text-shadow: 0 0 10px rgba(45, 212, 191, 0.5);
         }
         
@@ -263,128 +263,7 @@
         </div>
         
         <div class="content">
-            
-<h2>Technical Infrastructure</h2>
-
-<h3>Blockchain Foundation</h3>
-<div class="table-container">
-    <table>
-        <thead>
-            <tr>
-                <th>Component</th>
-                <th>Technology</th>
-                <th>Purpose</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><strong>Base Blockchain</strong></td>
-                <td>HyperEVM</td>
-                <td>Ethereum-compatible with HyperCore integration</td>
-            </tr>
-            <tr>
-                <td><strong>Smart Contracts</strong></td>
-                <td>Solidity 0.8.20+</td>
-                <td>Core protocol logic and automation</td>
-            </tr>
-            <tr>
-                <td><strong>Security Framework</strong></td>
-                <td>OpenZeppelin</td>
-                <td>Battle-tested security modules</td>
-            </tr>
-            <tr>
-                <td><strong>Native Precompiles</strong></td>
-                <td>HyperCore</td>
-                <td>Direct orderbook access</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-
-<h3>Integration Architecture</h3>
-<div class="table-container">
-    <table>
-        <thead>
-            <tr>
-                <th>Protocol</th>
-                <th>Integration Type</th>
-                <th>Functionality</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><strong>HyperCore</strong></td>
-                <td>Native Precompile</td>
-                <td>Orderbook trading, delta-neutral strategies</td>
-            </tr>
-            <tr>
-                <td><strong>HyperSwap</strong></td>
-                <td>Direct Contract</td>
-                <td>AMM liquidity aggregation</td>
-            </tr>
-            <tr>
-                <td><strong>Chainlink</strong></td>
-                <td>Oracle Integration</td>
-                <td>Price feeds and automation</td>
-            </tr>
-            <tr>
-                <td><strong>LayerZero</strong></td>
-                <td>Cross-chain Messaging</td>
-                <td>Multi-chain asset bridging</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-
-<h3>Core Protocol Components</h3>
-
-<div class="highlight-section">
-    <h4>Yield Optimization Engine</h4>
-    <p>Advanced algorithms continuously monitor and optimize yield opportunities across multiple protocols and chains.</p>
-    
-    <ul>
-        <li><strong>Delta-Neutral Strategies:</strong> Market-neutral positions for consistent returns</li>
-        <li><strong>Automated Rebalancing:</strong> Dynamic portfolio optimization</li>
-        <li><strong>Risk Assessment:</strong> Real-time monitoring and mitigation</li>
-        <li><strong>Gas Optimization:</strong> Efficient transaction batching and routing</li>
-    </ul>
-</div>
-
-<h3>Security Architecture</h3>
-
-<div class="stats-grid">
-    <div class="stat-item">
-        <span class="stat-value">Multi-Sig</span>
-        <span class="stat-label">Treasury Protection</span>
-    </div>
-    <div class="stat-item">
-        <span class="stat-value">Audited</span>
-        <span class="stat-label">Smart Contracts</span>
-    </div>
-    <div class="stat-item">
-        <span class="stat-value">Time-Lock</span>
-        <span class="stat-label">Governance Delays</span>
-    </div>
-    <div class="stat-item">
-        <span class="stat-value">Emergency</span>
-        <span class="stat-label">Pause Functions</span>
-    </div>
-</div>
-
-<h4>Development Stack</h4>
-<ul>
-    <li><strong>Frontend:</strong> React/Next.js with Web3 integration</li>
-    <li><strong>Backend:</strong> Node.js with real-time data feeds</li>
-    <li><strong>Database:</strong> PostgreSQL for analytics and user data</li>
-    <li><strong>Monitoring:</strong> Comprehensive system health tracking</li>
-    <li><strong>API:</strong> RESTful and GraphQL endpoints</li>
-    <li><strong>Mobile:</strong> React Native application</li>
-</ul>
-
-<div style="text-align: center; margin-top: 50px;">
-    <p><strong>For complete protocol details: <a href="https://clockerwork02.github.io">HyperFlow Protocol Whitepaper</a></strong></p>
-</div>
-
+            architecture content here
         </div>
     </div>
     
