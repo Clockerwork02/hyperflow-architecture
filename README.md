@@ -1,313 +1,268 @@
-# HyperFlow Technical Architecture
-
 # HyperFlow Protocol - Technical Architecture
 
-## System Overview
+## Architecture Overview
 
-HyperFlow Protocol is built as a modular DeFi infrastructure system on HyperEVM, designed to leverage the unique dual-block architecture and native orderbook integration that sets HyperEVM apart from other EVM chains.
+HyperFlow Protocol is built as a modular, scalable DeFi infrastructure platform specifically designed to leverage HyperEVM's unique dual-execution environment. The architecture combines traditional EVM compatibility with native HyperCore orderbook integration through precompiles, enabling advanced trading strategies unavailable on other platforms.
 
-## Core Architecture Components
+## Core Components
 
-### 1. Smart Contract System
+### 1. Smart Vault System
+The heart of HyperFlow's yield optimization infrastructure, featuring automated strategy execution and risk management.
 
-#### Vault Management Contracts
+#### Vault Controller Contract
 ```solidity
-// Core vault logic with yield optimization
-contract HyperFlowVault {
-    - Auto-compounding mechanisms
-    - Multi-protocol yield routing
-    - Emergency pause and withdrawal
-    - Performance fee calculation
-    - Risk parameter enforcement
+contract HyperFlowVaultController {
+    struct VaultStrategy {
+        uint256 allocation;      // Percentage allocation
+        uint256 riskScore;       // Risk assessment (1-100)
+        uint256 expectedAPY;     // Target annual yield
+        uint256 lastRebalance;   // Timestamp of last rebalancing
+        bool isActive;           // Strategy status
+    }
+    
+    mapping(address => VaultStrategy[]) public userStrategies;
+    mapping(address => uint256) public totalDeposits;
+    
+    function optimizeYield(address user) external {
+        // Automated rebalancing logic
+        // Risk assessment algorithms
+        // Compound reward harvesting
+        // Cross-protocol optimization
+    }
+    
+    function emergencyWithdraw(address user) external {
+        // Emergency liquidation mechanism
+        // Asset protection during market volatility
+    }
 }
+```
 
-// Strategy-specific implementations
+### 2. HyperCore Integration Layer
+Direct integration with HyperCore orderbook through HyperEVM precompiles, enabling sophisticated arbitrage and delta-neutral strategies.
+
+#### Precompile Interface
+```solidity
+interface IHyperCorePrecompile {
+    // Orderbook data access
+    function getOrderbookDepth(address market) 
+        external view returns (uint256 bidDepth, uint256 askDepth);
+    
+    // Direct orderbook execution
+    function executeMarketOrder(bytes calldata orderParams) external;
+    
+    // Delta-neutral position management
+    function getBestNeutralPosition(address asset) 
+        external view returns (uint256 perpSize, uint256 spotSize);
+    
+    // Arbitrage opportunity detection
+    function findArbitrageOpportunities(address[] calldata markets)
+        external view returns (bytes memory opportunities);
+}
+```
+
+### 3. Cross-DEX Aggregation Engine
+Intelligent routing system that aggregates liquidity across all major HyperEVM DEXs for optimal execution.
+
+#### Liquidity Aggregator
+```solidity
+contract HyperFlowAggregator {
+    // Supported DEX protocols
+    enum DEXProtocol { HyperSwap, HyperBloom, HyperCore, UniV3 }
+    
+    struct RouteStep {
+        DEXProtocol protocol;
+        address pool;
+        uint256 amountIn;
+        uint256 expectedOut;
+        uint256 slippageTolerance;
+    }
+    
+    function findOptimalRoute(
+        address tokenIn,
+        address tokenOut,
+        uint256 amountIn
+    ) external view returns (RouteStep[] memory route) {
+        // Multi-DEX routing algorithm
+        // Gas optimization calculations
+        // MEV protection mechanisms
+        // Slippage minimization
+    }
+    
+    function executeOptimalSwap(RouteStep[] calldata route) external {
+        // Multi-hop execution with MEV protection
+        // Atomic transaction guarantees
+        // Front-running prevention
+    }
+}
+```
+
+### 4. Risk Management Framework
+Comprehensive risk assessment and protection mechanisms for user funds and protocol stability.
+
+#### Risk Assessment Engine
+```solidity
+contract RiskManager {
+    struct RiskMetrics {
+        uint256 volatilityScore;    // Asset volatility rating
+        uint256 liquidityDepth;    // Available liquidity
+        uint256 correlationRisk;   // Portfolio correlation
+        uint256 concentrationRisk; // Position concentration
+    }
+    
+    function assessPortfolioRisk(address user) 
+        external view returns (RiskMetrics memory metrics) {
+        // Real-time portfolio analysis
+        // Correlation matrix calculations
+        // Concentration risk assessment
+    }
+    
+    function liquidationPreventionAlert(address user) 
+        external view returns (bool atRisk, uint256 timeToLiquidation) {
+        // Predictive liquidation analysis
+        // Early warning system
+    }
+}
+```
+
+## Technical Infrastructure
+
+### Blockchain Layer
+| Component | Technology | Purpose |
+|-----------|------------|---------|
+| Base Blockchain | HyperEVM | Ethereum-compatible execution with HyperCore integration |
+| Smart Contracts | Solidity 0.8.20+ | Core protocol logic and automation |
+| Security Framework | OpenZeppelin | Battle-tested security modules and patterns |
+| Precompiles | HyperCore Native | Direct orderbook access and arbitrage execution |
+
+### Integration Architecture
+| Protocol | Integration Type | Functionality |
+|----------|------------------|---------------|
+| HyperCore | Native Precompile | Orderbook trading, delta-neutral strategies |
+| HyperSwap | Direct Contract | AMM liquidity aggregation |
+| HyperBloom | Direct Contract | Advanced AMM features and concentrated liquidity |
+| Chainlink | Oracle Integration | Price feeds and automation triggers |
+| LayerZero | Cross-chain Messaging | Multi-chain asset bridging |
+
+## Advanced Features
+
+### Delta-Neutral Yield Strategies
+Leveraging HyperEVM's unique architecture to create market-neutral positions that generate yield regardless of price movements.
+
+#### Implementation Example
+```solidity
 contract DeltaNeutralStrategy {
-    - HyperCore perp position management
-    - Spot position hedging
-    - Automatic rebalancing triggers
-    - Profit/loss tracking
-}
-```
-
-#### Aggregation & Routing Engine
-```solidity
-// Cross-DEX trade routing
-contract LiquidityAggregator {
-    - HyperSwap integration
-    - HyperBloom routing
-    - HyperCore orderbook access
-    - MEV protection mechanisms
-    - Slippage optimization
-}
-
-// Cross-chain bridge management
-contract CrossChainManager {
-    - DeBridge integration
-    - Hyperlane messaging
-    - Asset custody and security
-    - Bridge fee management
-}
-```
-
-#### Governance & Token Contracts
-```solidity
-// FLOW token with advanced features
-contract FlowToken {
-    - ERC-20 standard compliance
-    - Staking mechanism integration
-    - Governance voting weights
-    - Revenue distribution logic
-}
-
-// Decentralized governance system
-contract GovernanceModule {
-    - Proposal creation and voting
-    - Treasury management
-    - Parameter adjustment controls
-    - Multi-sig integration
-}
-```
-
-### 2. HyperEVM-Specific Optimizations
-
-#### Native Orderbook Integration
-- **Precompile Access**: Direct HyperCore orderbook read/write
-- **Sub-Second Execution**: Leverage 1-second finality for arbitrage
-- **Dual-Block Architecture**: Small blocks for simple operations, large blocks for complex strategies
-- **Gas Optimization**: Efficient use of 2M gas limit for quick transactions
-
-#### Performance Enhancements
-- **Batch Operations**: Group multiple trades in large blocks (30M gas)
-- **State Optimization**: Minimize storage reads/writes for gas efficiency
-- **Event Indexing**: Optimized event emission for real-time monitoring
-- **Memory Management**: Efficient data structures for complex calculations
-
-### 3. Backend Infrastructure
-
-#### Real-Time Data Processing
-```typescript
-// WebSocket connections for live market data
-class MarketDataManager {
-    - HyperCore API integration
-    - DEX price feed aggregation
-    - Yield rate monitoring
-    - Risk metric calculations
-}
-
-// Automated strategy execution
-class StrategyEngine {
-    - Position monitoring
-    - Rebalancing triggers
-    - Emergency exit conditions
-    - Performance tracking
-}
-```
-
-#### Database Architecture
-```sql
--- PostgreSQL schema for analytics
-Tables:
-- user_positions: Real-time position tracking
-- vault_performance: Historical yield data
-- trading_history: Complete transaction records
-- risk_metrics: Real-time risk assessments
-- protocol_revenue: Fee collection and distribution
-```
-
-### 4. Security Architecture
-
-#### Access Control & Permissions
-```solidity
-// Role-based access control
-contract SecurityModule {
-    bytes32 public constant ADMIN_ROLE = keccak256("ADMIN_ROLE");
-    bytes32 public constant STRATEGY_MANAGER_ROLE = keccak256("STRATEGY_MANAGER_ROLE");
-    bytes32 public constant EMERGENCY_ROLE = keccak256("EMERGENCY_ROLE");
-    
-    // Multi-signature requirements
-    mapping(bytes32 => uint256) public roleThresholds;
-    
-    modifier onlyRole(bytes32 role) {
-        require(hasRole(role, msg.sender), "Access denied");
-        _;
+    function createNeutralPosition(
+        address asset,
+        uint256 notionalAmount
+    ) external {
+        // Step 1: Calculate optimal hedge ratio
+        uint256 hedgeRatio = calculateOptimalHedge(asset);
+        
+        // Step 2: Open spot position on EVM side
+        uint256 spotAmount = notionalAmount;
+        openSpotPosition(asset, spotAmount);
+        
+        // Step 3: Open opposite perpetual position on HyperCore
+        uint256 perpAmount = (spotAmount * hedgeRatio) / 1e18;
+        openPerpPosition(asset, perpAmount, false); // Short
+        
+        // Step 4: Monitor and rebalance automatically
+        scheduleRebalancing(asset, 3600); // Every hour
     }
 }
 ```
 
-#### Oracle Security & Price Feeds
-```solidity
-// Multi-source price validation
-contract OracleManager {
-    struct PriceData {
-        uint256 price;
-        uint256 timestamp;
-        address source;
-    }
-    
-    function getSecurePrice(address asset) external view returns (uint256) {
-        PriceData[] memory sources = aggregatePrices(asset);
-        validatePriceFeeds(sources);
-        return calculateMedianPrice(sources);
-    }
-}
-```
+### MEV Protection Mechanisms
+Advanced protection against maximum extractable value attacks through sophisticated routing and execution strategies.
 
-#### Emergency Systems
-```solidity
-// Circuit breaker implementation
-contract EmergencyControls {
-    bool public emergencyStop = false;
-    uint256 public constant MAX_TVL_DROP = 1000; // 10%
-    uint256 public constant LARGE_WITHDRAWAL_THRESHOLD = 50000e18; // $50K
-    
-    modifier notPaused() {
-        require(!emergencyStop, "Protocol paused");
-        _;
-    }
-    
-    function emergencyPause() external onlyRole(EMERGENCY_ROLE) {
-        emergencyStop = true;
-        emit EmergencyPause(block.timestamp);
-    }
-}
-```
-
-### 5. Frontend Architecture
-
-#### React/Next.js Application
-```typescript
-// Component structure
-components/
-├── Dashboard/          - Main user interface
-├── VaultManager/       - Vault creation and management
-├── Analytics/          - Performance and risk dashboards
-├── Governance/         - Voting and proposal interface
-├── Security/           - Security monitoring and alerts
-├── Portfolio/          - Position tracking and management
-└── Settings/           - User preferences and security
-```
-
-#### Web3 Integration
-```typescript
-// Wallet and contract interactions
-class Web3Manager {
-    - MetaMask integration
-    - Contract interaction layer
-    - Transaction management
-    - Error handling and retries
-}
-
-// Real-time updates
-class SubscriptionManager {
-    - WebSocket connections
-    - Position updates
-    - Price feed subscriptions
-    - Event monitoring
-}
-```
-
-## Integration Layer
-
-### HyperEVM Ecosystem Integrations
-
-#### DEX Integrations
-- **HyperSwap**: Native AMM integration for spot trading
-- **HyperBloom**: Yield optimization and vault strategies
-- **ProjectX**: Additional liquidity sourcing
-- **KittenSwap**: Alternative routing options
-
-#### Lending/Borrowing Protocols
-- **HyperLend**: Collateral management and borrowing
-- **Cluster**: Liquid staking integration
-- **Tenderize**: Additional staking options
-- **HyperFlash**: Flash loan capabilities
-
-#### Infrastructure Partners
-- **Hyperlane**: Cross-chain messaging and bridging
-- **DeBridge**: Multi-asset bridge integration
-- **The Graph**: Data indexing and querying
-- **Chainlink**: Price feeds and automation
-
-### External Integrations
-
-#### Oracle Network
-- **HyperCore Orderbook**: Primary price source
-- **Chainlink Feeds**: External market data
-- **Custom Oracles**: Yield rate aggregation
-- **Time-Weighted Averages**: Manipulation resistance
-
-#### Security Infrastructure
-- **OpenZeppelin**: Battle-tested contract libraries
-- **Multi-Sig Wallets**: Gnosis Safe integration
-- **Timelock Contracts**: Governance execution delays
-- **Emergency Pause**: Circuit breaker mechanisms
-
-## Data Architecture
-
-### On-Chain Data
-- **Transaction History**: Complete audit trail
-- **Position States**: Real-time portfolio tracking
-- **Governance Records**: Voting and proposal history
-- **Revenue Distribution**: Transparent fee sharing
-
-### Off-Chain Analytics
-- **Performance Metrics**: Historical yield analysis
-- **Risk Assessments**: Real-time position monitoring
-- **User Behavior**: Interface optimization data
-- **Market Intelligence**: Cross-protocol trend analysis
+- **Private Mempool**: Direct submission to validators bypassing public mempool
+- **Batch Execution**: Grouping transactions to minimize MEV exposure
+- **Randomized Routing**: Dynamic path selection to prevent front-running
+- **Slippage Protection**: Intelligent slippage bounds based on market conditions
 
 ## Security Architecture
 
-### Smart Contract Security
-- **Multi-Layer Audits**: Certik, ConsenSys, Trail of Bits
-- **Formal Verification**: Critical function mathematical proofs
-- **Bug Bounty Program**: Ongoing security incentives
-- **Gradual Deployment**: Phased rollout with monitoring
+### Multi-Layer Security Model
 
-### Operational Security
-- **Multi-Sig Treasury**: Community-controlled funds
-- **Timelock Governance**: 48-hour execution delays
-- **Emergency Procedures**: Rapid response protocols
-- **Insurance Coverage**: Nexus Mutual integration
+#### Contract Security
+- **Formal Verification**: Mathematical proof of contract correctness
+- **Comprehensive Testing**: 100% code coverage with edge case scenarios
+- **External Audits**: Multiple independent security reviews
+- **Bug Bounty Program**: Ongoing incentives for vulnerability discovery
 
-### User Security
-- **Non-Custodial Design**: Users maintain asset control
-- **Slippage Protection**: Maximum loss parameters
-- **Position Monitoring**: Automated risk alerts
-- **Recovery Mechanisms**: Emergency withdrawal options
+#### Operational Security
+- **Multi-Signature Controls**: Distributed administrative access
+- **Timelock Mechanisms**: Delayed execution for critical operations
+- **Emergency Pause**: Circuit breakers for crisis situations
+- **Gradual Rollout**: Phased deployment with increasing limits
 
-## Scalability & Performance
+### Oracle Security
+| Oracle Type | Provider | Purpose | Fallback |
+|-------------|----------|---------|----------|
+| Price Feeds | Chainlink | Asset pricing and risk calculations | Multiple source aggregation |
+| Volatility Data | Custom Oracle | Risk assessment and strategy optimization | Historical data analysis |
+| Liquidity Metrics | On-chain Analysis | Real-time liquidity depth monitoring | DEX data aggregation |
 
-### HyperEVM Optimization
-- **Gas Efficiency**: Optimized for dual-block architecture
-- **Parallel Processing**: Concurrent strategy execution
-- **State Management**: Minimal storage footprint
-- **Event Optimization**: Efficient log emission
+## Performance Optimization
 
-### Backend Scaling
-- **Microservices**: Modular service architecture
-- **Load Balancing**: Distributed request handling
-- **Caching Layer**: Redis for fast data access
-- **Database Optimization**: Indexed queries and partitioning
+### Gas Efficiency
+- **Batch Operations**: Multiple actions in single transaction
+- **Storage Optimization**: Minimal on-chain data storage
+- **Precompile Utilization**: Native HyperEVM optimizations
+- **Assembly Optimization**: Critical path assembly code
+
+### Scalability Features
+- **Layer 2 Integration**: Optimistic execution for complex calculations
+- **State Channels**: Off-chain computation with on-chain settlement
+- **Modular Architecture**: Horizontal scaling through component separation
+- **Caching Layers**: Intelligent data caching for reduced blockchain calls
 
 ## Monitoring & Analytics
 
 ### Real-Time Monitoring
-- **System Health**: Service uptime and performance
-- **Transaction Success**: Error rate tracking
-- **User Activity**: Interface engagement metrics
-- **Protocol Performance**: Yield and fee generation
+- **Protocol Health**: TVL, revenue, and user metrics
+- **Risk Monitoring**: Portfolio risk and liquidation alerts
+- **Performance Tracking**: Strategy yields and optimization effectiveness
+- **Security Alerts**: Anomaly detection and threat monitoring
 
-### Business Intelligence
-- **TVL Tracking**: Total value locked growth
-- **User Retention**: Cohort analysis and churn
-- **Revenue Analytics**: Fee collection and distribution
-- **Competitive Analysis**: Market position monitoring
+### User Analytics Dashboard
+- **Portfolio Overview**: Real-time position and P&L tracking
+- **Strategy Performance**: Historical and projected yields
+- **Risk Assessment**: Personal risk scores and recommendations
+- **Market Insights**: Cross-protocol opportunities and trends
 
-This technical architecture ensures HyperFlow Protocol can deliver high-performance DeFi services while maintaining security, scalability, and user experience standards expected in the modern DeFi ecosystem.
+## Future Technical Roadmap
+
+### Phase 1: Core Infrastructure (Months 1-3)
+- Smart vault system deployment
+- Basic HyperCore integration
+- Cross-DEX aggregation for major protocols
+- Security audits and formal verification
+
+### Phase 2: Advanced Features (Months 4-6)
+- Delta-neutral strategy implementation
+- MEV protection mechanisms
+- Advanced risk management tools
+- Cross-chain bridge integration
+
+### Phase 3: Optimization & Scaling (Months 7-12)
+- AI-powered yield optimization
+- Institutional-grade features
+- Advanced analytics and reporting
+- Layer 2 scaling solutions
+
+### Phase 4: Ecosystem Expansion (Year 2+)
+- Cross-chain protocol expansion
+- Real-world asset integration
+- Institutional custody solutions
+- White-label infrastructure offering
+
+## Conclusion
+
+HyperFlow Protocol's technical architecture leverages the unique advantages of HyperEVM while maintaining compatibility with existing DeFi infrastructure. The modular design enables rapid iteration and scaling while providing institutional-grade security and performance.
+
+By combining native HyperCore integration with advanced yield optimization and risk management, HyperFlow creates a technical foundation capable of supporting the next generation of DeFi applications on HyperEVM.
 
 ---
 
-**Part of HyperFlow Protocol Documentation**
-- Main Documentation: [Clockerwork02.github.io](https://Clockerwork02.github.io)
+**For the complete protocol overview, please refer to the [HyperFlow Protocol Whitepaper](https://clockerwork02.github.io).**

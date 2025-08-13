@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Technical Architecture - HyperFlow Protocol</title>
+    <title>HyperFlow Protocol - Technical Architecture</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,215 +13,219 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #0a0f1c;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0f1419;
             color: #e2e8f0;
             line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
         }
         
         .container {
-            max-width: 1000px;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 40px 20px;
         }
         
         .header {
             text-align: center;
             margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #2d3748;
+        }
+        
+        h1 {
+            color: #14b8a6;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
         }
         
         .back-link {
             display: inline-block;
-            background: rgba(0, 212, 255, 0.1);
-            color: #00d4ff;
-            padding: 10px 20px;
-            border-radius: 6px;
+            margin-bottom: 20px;
+            color: #14b8a6;
             text-decoration: none;
-            margin-bottom: 30px;
+            font-weight: 500;
+            padding: 10px 20px;
+            border: 1px solid #14b8a6;
+            border-radius: 8px;
             transition: all 0.3s ease;
         }
         
         .back-link:hover {
-            background: rgba(0, 212, 255, 0.2);
-            transform: translateY(-2px);
+            background: #14b8a6;
+            color: #0f1419;
         }
         
-        h1 {
-            color: #00d4ff;
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+        .content {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.7) 100%);
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
         }
         
-        h2 {
-            color: #4dd0e1;
+        .content h1 {
+            color: #14b8a6;
             font-size: 1.8rem;
+            margin: 0 0 20px 0;
+            text-align: left;
+        }
+        
+        .content h2 {
+            color: #14b8a6;
+            font-size: 1.5rem;
             margin: 30px 0 15px 0;
-            border-bottom: 2px solid rgba(77, 208, 225, 0.3);
-            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(20, 184, 166, 0.3);
+            padding-bottom: 10px;
         }
         
-        h3 {
-            color: #81c784;
-            font-size: 1.4rem;
-            margin: 25px 0 10px 0;
+        .content h2:first-of-type {
+            margin-top: 0;
         }
         
-        h4 {
-            color: #ffb74d;
+        .content h3 {
+            color: #06b6d4;
             font-size: 1.2rem;
+            margin: 25px 0 12px 0;
+        }
+        
+        .content h4 {
+            color: #22d3ee;
+            font-size: 1rem;
             margin: 20px 0 8px 0;
         }
         
-        p {
+        .content p {
+            color: #cbd5e1;
             margin-bottom: 15px;
-            color: #cbd5e0;
+            text-align: justify;
         }
         
-        ul {
-            margin: 15px 0;
-            padding-left: 25px;
+        .content ul {
+            margin: 15px 0 15px 25px;
         }
         
-        ol {
-            margin: 15px 0;
-            padding-left: 25px;
-        }
-        
-        li {
+        .content li {
+            color: #cbd5e1;
             margin-bottom: 8px;
-            color: #cbd5e0;
         }
         
-        strong {
-            color: #ffffff;
+        .content strong {
+            color: #14b8a6;
             font-weight: 600;
         }
         
-        em {
-            color: #a0aec0;
-        }
-        
-        code {
-            background: rgba(0, 212, 255, 0.1);
-            color: #00d4ff;
+        .content code {
+            background: #0f172a;
+            color: #f59e0b;
             padding: 2px 6px;
             border-radius: 4px;
-            font-family: monospace;
-            font-size: 0.9em;
+            font-family: 'Monaco', 'Consolas', monospace;
+            font-size: 0.9rem;
         }
         
-        .code-block {
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(0, 212, 255, 0.3);
+        .content pre {
+            background: #0f172a;
+            border: 1px solid #334155;
             border-radius: 8px;
+            padding: 20px;
             margin: 20px 0;
             overflow-x: auto;
+            font-size: 0.9rem;
         }
         
-        .code-block pre {
-            padding: 20px;
-            margin: 0;
-        }
-        
-        .code-block code {
+        .content pre code {
             background: none;
-            color: #e2e8f0;
             padding: 0;
+            color: #e5e7eb;
         }
         
-        hr {
-            border: none;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.5), transparent);
-            margin: 30px 0;
+        /* Syntax highlighting for code blocks */
+        .content pre .keyword {
+            color: #c678dd;
+            font-weight: 600;
+        }
+        
+        .content pre .string {
+            color: #98c379;
+        }
+        
+        .content pre .comment {
+            color: #7c8b9a;
+            font-style: italic;
+        }
+        
+        .content pre .function {
+            color: #61afef;
+        }
+        
+        .content pre .type {
+            color: #e06c75;
+        }
+        
+        .content pre .number {
+            color: #d19a66;
+        }
+        
+        .content pre .operator {
+            color: #56b6c2;
         }
         
         .table-container {
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(77, 208, 225, 0.3);
-            border-radius: 12px;
-            padding: 25px;
-            margin: 30px 0;
-            box-shadow: 0 4px 15px rgba(0, 212, 255, 0.1);
-        }
-        
-        .table-container h4 {
-            color: #00d4ff;
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 1.4rem;
-        }
-        
-        .table-responsive {
             overflow-x: auto;
-            border-radius: 8px;
+            margin: 20px 0;
+            border-radius: 12px;
+            border: 1px solid #334155;
         }
         
-        .data-table, .comparison-table {
+        table {
             width: 100%;
             border-collapse: collapse;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 8px;
-            overflow: hidden;
+            background: #0f172a;
+            min-width: 600px;
         }
         
-        .data-table th, .comparison-table th {
-            background: rgba(0, 212, 255, 0.2);
-            color: #ffffff;
-            padding: 15px 12px;
+        th {
+            background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%);
+            color: white;
+            padding: 15px;
             text-align: left;
             font-weight: 600;
-            border-bottom: 2px solid rgba(0, 212, 255, 0.3);
+            font-size: 0.95rem;
+            white-space: nowrap;
         }
         
-        .data-table td, .comparison-table td {
-            padding: 12px;
-            border-bottom: 1px solid rgba(77, 208, 225, 0.2);
-            color: #cbd5e0;
-            background: rgba(0, 0, 0, 0.1);
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #334155;
+            color: #e2e8f0;
         }
         
-        .data-table tr:nth-child(even) td, .comparison-table tr:nth-child(even) td {
-            background: rgba(0, 0, 0, 0.2);
+        tr:last-child td {
+            border-bottom: none;
         }
         
-        .data-table tr:hover td, .comparison-table tr:hover td {
-            background: rgba(0, 212, 255, 0.1);
-        }
-        
-        .hyperflow-advantage {
-            background: rgba(129, 199, 132, 0.2) !important;
-            color: #81c784 !important;
-            font-weight: 600;
-        }
-        
-        .comparison-table td:first-child {
-            font-weight: 600;
-            color: #ffffff;
+        tr:hover {
+            background: rgba(20, 184, 166, 0.05);
         }
         
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-            
-            h2 {
-                font-size: 1.5rem;
-            }
-            
-            .container {
-                padding: 20px 15px;
-            }
-            
-            .table-container {
+            body {
                 padding: 15px;
-                margin: 20px 0;
             }
             
-            .data-table th, .comparison-table th,
-            .data-table td, .comparison-table td {
-                padding: 8px 6px;
-                font-size: 0.9rem;
+            .content {
+                padding: 25px;
+            }
+            
+            table {
+                font-size: 0.8rem;
+                min-width: 500px;
+            }
+            
+            th, td {
+                padding: 8px 10px;
             }
         }
     </style>
@@ -228,71 +233,373 @@
 <body>
     <div class="container">
         <div class="header">
-            <a href="https://Clockerwork02.github.io" class="back-link">← Back to Main Whitepaper</a>
+            <a href="https://clockerwork02.github.io" class="back-link">← Back to Main Whitepaper</a>
+            <h1>HyperFlow Protocol - Technical Architecture</h1>
         </div>
-        <h1>Technical Architecture</h1>
-
-<h2>Core Components</h2>
-
-<h3>Smart Vault System</h3>
-<p>The HyperFlow vault system employs automated strategies for yield optimization:</p>
-
-<div class="code-block">
-<pre><code>contract HyperFlowVault {
-    struct Strategy {
-        address target;
-        uint256 allocation;
-        uint256 riskScore;
-        uint256 expectedAPY;
+        
+        <div class="content">
+            <h2>Architecture Overview</h2>
+            <p>HyperFlow Protocol is built as a modular, scalable DeFi infrastructure platform specifically designed to leverage HyperEVM's unique dual-execution environment. The architecture combines traditional EVM compatibility with native HyperCore orderbook integration through precompiles, enabling advanced trading strategies unavailable on other platforms.</p>
+            
+            <h2>Core Components</h2>
+            
+            <h3>1. Smart Vault System</h3>
+            <p>The heart of HyperFlow's yield optimization infrastructure, featuring automated strategy execution and risk management.</p>
+            
+            <h4>Vault Controller Contract</h4>
+            <pre><code><span class="keyword">contract</span> <span class="type">HyperFlowVaultController</span> {
+    <span class="keyword">struct</span> <span class="type">VaultStrategy</span> {
+        <span class="type">uint256</span> allocation;      <span class="comment">// Percentage allocation</span>
+        <span class="type">uint256</span> riskScore;       <span class="comment">// Risk assessment (1-100)</span>
+        <span class="type">uint256</span> expectedAPY;     <span class="comment">// Target annual yield</span>
+        <span class="type">uint256</span> lastRebalance;   <span class="comment">// Timestamp of last rebalancing</span>
+        <span class="type">bool</span> isActive;           <span class="comment">// Strategy status</span>
     }
     
-    mapping(address => Strategy[]) public userStrategies;
+    <span class="keyword">mapping</span>(<span class="type">address</span> <span class="operator">=></span> <span class="type">VaultStrategy</span>[]) <span class="keyword">public</span> userStrategies;
+    <span class="keyword">mapping</span>(<span class="type">address</span> <span class="operator">=></span> <span class="type">uint256</span>) <span class="keyword">public</span> totalDeposits;
     
-    function optimizeYield(address user) external {
-        // Automated rebalancing logic
-        // Risk assessment algorithms
-        // Compound reward harvesting
+    <span class="keyword">function</span> <span class="function">optimizeYield</span>(<span class="type">address</span> user) <span class="keyword">external</span> {
+        <span class="comment">// Automated rebalancing logic</span>
+        <span class="comment">// Risk assessment algorithms</span>
+        <span class="comment">// Compound reward harvesting</span>
+        <span class="comment">// Cross-protocol optimization</span>
+    }
+    
+    <span class="keyword">function</span> <span class="function">emergencyWithdraw</span>(<span class="type">address</span> user) <span class="keyword">external</span> {
+        <span class="comment">// Emergency liquidation mechanism</span>
+        <span class="comment">// Asset protection during market volatility</span>
     }
 }</code></pre>
-</div>
-
-<h2>Security Framework</h2>
-<div class="table-container">
-    <h4>Security Measures</h4>
-    <div class="table-responsive">
-        <table class="data-table">
-            <thead>
-                <tr>
-                    <th>Component</th>
-                    <th>Implementation</th>
-                    <th>Purpose</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>OpenZeppelin Libraries</strong></td>
-                    <td>Industry-standard modules</td>
-                    <td>Proven security patterns</td>
-                </tr>
-                <tr>
-                    <td><strong>Formal Verification</strong></td>
-                    <td>Mathematical proofs</td>
-                    <td>Contract correctness</td>
-                </tr>
-                <tr>
-                    <td><strong>Multi-Sig Governance</strong></td>
-                    <td>5-of-9 signatures</td>
-                    <td>Distributed control</td>
-                </tr>
-                <tr>
-                    <td><strong>Timelock Contracts</strong></td>
-                    <td>48-hour delays</td>
-                    <td>Parameter change protection</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+            
+            <h3>2. HyperCore Integration Layer</h3>
+            <p>Direct integration with HyperCore orderbook through HyperEVM precompiles, enabling sophisticated arbitrage and delta-neutral strategies.</p>
+            
+            <h4>Precompile Interface</h4>
+            <pre><code><span class="keyword">interface</span> <span class="type">IHyperCorePrecompile</span> {
+    <span class="comment">// Orderbook data access</span>
+    <span class="keyword">function</span> <span class="function">getOrderbookDepth</span>(<span class="type">address</span> market) 
+        <span class="keyword">external</span> <span class="keyword">view</span> <span class="keyword">returns</span> (<span class="type">uint256</span> bidDepth, <span class="type">uint256</span> askDepth);
+    
+    <span class="comment">// Direct orderbook execution</span>
+    <span class="keyword">function</span> <span class="function">executeMarketOrder</span>(<span class="type">bytes</span> <span class="keyword">calldata</span> orderParams) <span class="keyword">external</span>;
+    
+    <span class="comment">// Delta-neutral position management</span>
+    <span class="keyword">function</span> <span class="function">getBestNeutralPosition</span>(<span class="type">address</span> asset) 
+        <span class="keyword">external</span> <span class="keyword">view</span> <span class="keyword">returns</span> (<span class="type">uint256</span> perpSize, <span class="type">uint256</span> spotSize);
+    
+    <span class="comment">// Arbitrage opportunity detection</span>
+    <span class="keyword">function</span> <span class="function">findArbitrageOpportunities</span>(<span class="type">address</span>[] <span class="keyword">calldata</span> markets)
+        <span class="keyword">external</span> <span class="keyword">view</span> <span class="keyword">returns</span> (<span class="type">bytes</span> <span class="keyword">memory</span> opportunities);
+}</code></pre>
+            
+            <h3>3. Cross-DEX Aggregation Engine</h3>
+            <p>Intelligent routing system that aggregates liquidity across all major HyperEVM DEXs for optimal execution.</p>
+            
+            <h4>Liquidity Aggregator</h4>
+            <pre><code><span class="keyword">contract</span> <span class="type">HyperFlowAggregator</span> {
+    <span class="comment">// Supported DEX protocols</span>
+    <span class="keyword">enum</span> <span class="type">DEXProtocol</span> { HyperSwap, HyperBloom, HyperCore, UniV3 }
+    
+    <span class="keyword">struct</span> <span class="type">RouteStep</span> {
+        <span class="type">DEXProtocol</span> protocol;
+        <span class="type">address</span> pool;
+        <span class="type">uint256</span> amountIn;
+        <span class="type">uint256</span> expectedOut;
+        <span class="type">uint256</span> slippageTolerance;
+    }
+    
+    <span class="keyword">function</span> <span class="function">findOptimalRoute</span>(
+        <span class="type">address</span> tokenIn,
+        <span class="type">address</span> tokenOut,
+        <span class="type">uint256</span> amountIn
+    ) <span class="keyword">external</span> <span class="keyword">view</span> <span class="keyword">returns</span> (<span class="type">RouteStep</span>[] <span class="keyword">memory</span> route) {
+        <span class="comment">// Multi-DEX routing algorithm</span>
+        <span class="comment">// Gas optimization calculations</span>
+        <span class="comment">// MEV protection mechanisms</span>
+        <span class="comment">// Slippage minimization</span>
+    }
+    
+    <span class="keyword">function</span> <span class="function">executeOptimalSwap</span>(<span class="type">RouteStep</span>[] <span class="keyword">calldata</span> route) <span class="keyword">external</span> {
+        <span class="comment">// Multi-hop execution with MEV protection</span>
+        <span class="comment">// Atomic transaction guarantees</span>
+        <span class="comment">// Front-running prevention</span>
+    }
+}</code></pre>
+            
+            <h3>4. Risk Management Framework</h3>
+            <p>Comprehensive risk assessment and protection mechanisms for user funds and protocol stability.</p>
+            
+            <h4>Risk Assessment Engine</h4>
+            <pre><code><span class="keyword">contract</span> <span class="type">RiskManager</span> {
+    <span class="keyword">struct</span> <span class="type">RiskMetrics</span> {
+        <span class="type">uint256</span> volatilityScore;    <span class="comment">// Asset volatility rating</span>
+        <span class="type">uint256</span> liquidityDepth;    <span class="comment">// Available liquidity</span>
+        <span class="type">uint256</span> correlationRisk;   <span class="comment">// Portfolio correlation</span>
+        <span class="type">uint256</span> concentrationRisk; <span class="comment">// Position concentration</span>
+    }
+    
+    <span class="keyword">function</span> <span class="function">assessPortfolioRisk</span>(<span class="type">address</span> user) 
+        <span class="keyword">external</span> <span class="keyword">view</span> <span class="keyword">returns</span> (<span class="type">RiskMetrics</span> <span class="keyword">memory</span> metrics) {
+        <span class="comment">// Real-time portfolio analysis</span>
+        <span class="comment">// Correlation matrix calculations</span>
+        <span class="comment">// Concentration risk assessment</span>
+    }
+    
+    <span class="keyword">function</span> <span class="function">liquidationPreventionAlert</span>(<span class="type">address</span> user) 
+        <span class="keyword">external</span> <span class="keyword">view</span> <span class="keyword">returns</span> (<span class="type">bool</span> atRisk, <span class="type">uint256</span> timeToLiquidation) {
+        <span class="comment">// Predictive liquidation analysis</span>
+        <span class="comment">// Early warning system</span>
+    }
+}</code></pre>
+            
+            <h2>Technical Infrastructure</h2>
+            
+            <h3>Blockchain Layer</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Component</th>
+                            <th>Technology</th>
+                            <th>Purpose</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Base Blockchain</td>
+                            <td>HyperEVM</td>
+                            <td>Ethereum-compatible execution with HyperCore integration</td>
+                        </tr>
+                        <tr>
+                            <td>Smart Contracts</td>
+                            <td>Solidity 0.8.20+</td>
+                            <td>Core protocol logic and automation</td>
+                        </tr>
+                        <tr>
+                            <td>Security Framework</td>
+                            <td>OpenZeppelin</td>
+                            <td>Battle-tested security modules and patterns</td>
+                        </tr>
+                        <tr>
+                            <td>Precompiles</td>
+                            <td>HyperCore Native</td>
+                            <td>Direct orderbook access and arbitrage execution</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <h3>Integration Architecture</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Protocol</th>
+                            <th>Integration Type</th>
+                            <th>Functionality</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>HyperCore</td>
+                            <td>Native Precompile</td>
+                            <td>Orderbook trading, delta-neutral strategies</td>
+                        </tr>
+                        <tr>
+                            <td>HyperSwap</td>
+                            <td>Direct Contract</td>
+                            <td>AMM liquidity aggregation</td>
+                        </tr>
+                        <tr>
+                            <td>HyperBloom</td>
+                            <td>Direct Contract</td>
+                            <td>Advanced AMM features and concentrated liquidity</td>
+                        </tr>
+                        <tr>
+                            <td>Chainlink</td>
+                            <td>Oracle Integration</td>
+                            <td>Price feeds and automation triggers</td>
+                        </tr>
+                        <tr>
+                            <td>LayerZero</td>
+                            <td>Cross-chain Messaging</td>
+                            <td>Multi-chain asset bridging</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <h2>Advanced Features</h2>
+            
+            <h3>Delta-Neutral Yield Strategies</h3>
+            <p>Leveraging HyperEVM's unique architecture to create market-neutral positions that generate yield regardless of price movements.</p>
+            
+            <h4>Implementation Example</h4>
+            <pre><code><span class="keyword">contract</span> <span class="type">DeltaNeutralStrategy</span> {
+    <span class="keyword">function</span> <span class="function">createNeutralPosition</span>(
+        <span class="type">address</span> asset,
+        <span class="type">uint256</span> notionalAmount
+    ) <span class="keyword">external</span> {
+        <span class="comment">// Step 1: Calculate optimal hedge ratio</span>
+        <span class="type">uint256</span> hedgeRatio = <span class="function">calculateOptimalHedge</span>(asset);
+        
+        <span class="comment">// Step 2: Open spot position on EVM side</span>
+        <span class="type">uint256</span> spotAmount = notionalAmount;
+        <span class="function">openSpotPosition</span>(asset, spotAmount);
+        
+        <span class="comment">// Step 3: Open opposite perpetual position on HyperCore</span>
+        <span class="type">uint256</span> perpAmount = (spotAmount * hedgeRatio) / <span class="number">1e18</span>;
+        <span class="function">openPerpPosition</span>(asset, perpAmount, <span class="keyword">false</span>); <span class="comment">// Short</span>
+        
+        <span class="comment">// Step 4: Monitor and rebalance automatically</span>
+        <span class="function">scheduleRebalancing</span>(asset, <span class="number">3600</span>); <span class="comment">// Every hour</span>
+    }
+}</code></pre>
+            
+            <h3>MEV Protection Mechanisms</h3>
+            <p>Advanced protection against maximum extractable value attacks through sophisticated routing and execution strategies.</p>
+            
+            <ul>
+                <li><strong>Private Mempool</strong>: Direct submission to validators bypassing public mempool</li>
+                <li><strong>Batch Execution</strong>: Grouping transactions to minimize MEV exposure</li>
+                <li><strong>Randomized Routing</strong>: Dynamic path selection to prevent front-running</li>
+                <li><strong>Slippage Protection</strong>: Intelligent slippage bounds based on market conditions</li>
+            </ul>
+            
+            <h2>Security Architecture</h2>
+            
+            <h3>Multi-Layer Security Model</h3>
+            
+            <h4>Contract Security</h4>
+            <ul>
+                <li><strong>Formal Verification</strong>: Mathematical proof of contract correctness</li>
+                <li><strong>Comprehensive Testing</strong>: 100% code coverage with edge case scenarios</li>
+                <li><strong>External Audits</strong>: Multiple independent security reviews</li>
+                <li><strong>Bug Bounty Program</strong>: Ongoing incentives for vulnerability discovery</li>
+            </ul>
+            
+            <h4>Operational Security</h4>
+            <ul>
+                <li><strong>Multi-Signature Controls</strong>: Distributed administrative access</li>
+                <li><strong>Timelock Mechanisms</strong>: Delayed execution for critical operations</li>
+                <li><strong>Emergency Pause</strong>: Circuit breakers for crisis situations</li>
+                <li><strong>Gradual Rollout</strong>: Phased deployment with increasing limits</li>
+            </ul>
+            
+            <h3>Oracle Security</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Oracle Type</th>
+                            <th>Provider</th>
+                            <th>Purpose</th>
+                            <th>Fallback</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Price Feeds</td>
+                            <td>Chainlink</td>
+                            <td>Asset pricing and risk calculations</td>
+                            <td>Multiple source aggregation</td>
+                        </tr>
+                        <tr>
+                            <td>Volatility Data</td>
+                            <td>Custom Oracle</td>
+                            <td>Risk assessment and strategy optimization</td>
+                            <td>Historical data analysis</td>
+                        </tr>
+                        <tr>
+                            <td>Liquidity Metrics</td>
+                            <td>On-chain Analysis</td>
+                            <td>Real-time liquidity depth monitoring</td>
+                            <td>DEX data aggregation</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <h2>Performance Optimization</h2>
+            
+            <h3>Gas Efficiency</h3>
+            <ul>
+                <li><strong>Batch Operations</strong>: Multiple actions in single transaction</li>
+                <li><strong>Storage Optimization</strong>: Minimal on-chain data storage</li>
+                <li><strong>Precompile Utilization</strong>: Native HyperEVM optimizations</li>
+                <li><strong>Assembly Optimization</strong>: Critical path assembly code</li>
+            </ul>
+            
+            <h3>Scalability Features</h3>
+            <ul>
+                <li><strong>Layer 2 Integration</strong>: Optimistic execution for complex calculations</li>
+                <li><strong>State Channels</strong>: Off-chain computation with on-chain settlement</li>
+                <li><strong>Modular Architecture</strong>: Horizontal scaling through component separation</li>
+                <li><strong>Caching Layers</strong>: Intelligent data caching for reduced blockchain calls</li>
+            </ul>
+            
+            <h2>Monitoring & Analytics</h2>
+            
+            <h3>Real-Time Monitoring</h3>
+            <ul>
+                <li><strong>Protocol Health</strong>: TVL, revenue, and user metrics</li>
+                <li><strong>Risk Monitoring</strong>: Portfolio risk and liquidation alerts</li>
+                <li><strong>Performance Tracking</strong>: Strategy yields and optimization effectiveness</li>
+                <li><strong>Security Alerts</strong>: Anomaly detection and threat monitoring</li>
+            </ul>
+            
+            <h3>User Analytics Dashboard</h3>
+            <ul>
+                <li><strong>Portfolio Overview</strong>: Real-time position and P&L tracking</li>
+                <li><strong>Strategy Performance</strong>: Historical and projected yields</li>
+                <li><strong>Risk Assessment</strong>: Personal risk scores and recommendations</li>
+                <li><strong>Market Insights</strong>: Cross-protocol opportunities and trends</li>
+            </ul>
+            
+            <h2>Future Technical Roadmap</h2>
+            
+            <h3>Phase 1: Core Infrastructure (Months 1-3)</h3>
+            <ul>
+                <li>Smart vault system deployment</li>
+                <li>Basic HyperCore integration</li>
+                <li>Cross-DEX aggregation for major protocols</li>
+                <li>Security audits and formal verification</li>
+            </ul>
+            
+            <h3>Phase 2: Advanced Features (Months 4-6)</h3>
+            <ul>
+                <li>Delta-neutral strategy implementation</li>
+                <li>MEV protection mechanisms</li>
+                <li>Advanced risk management tools</li>
+                <li>Cross-chain bridge integration</li>
+            </ul>
+            
+            <h3>Phase 3: Optimization & Scaling (Months 7-12)</h3>
+            <ul>
+                <li>AI-powered yield optimization</li>
+                <li>Institutional-grade features</li>
+                <li>Advanced analytics and reporting</li>
+                <li>Layer 2 scaling solutions</li>
+            </ul>
+            
+            <h3>Phase 4: Ecosystem Expansion (Year 2+)</h3>
+            <ul>
+                <li>Cross-chain protocol expansion</li>
+                <li>Real-world asset integration</li>
+                <li>Institutional custody solutions</li>
+                <li>White-label infrastructure offering</li>
+            </ul>
+            
+            <h2>Conclusion</h2>
+            <p>HyperFlow Protocol's technical architecture leverages the unique advantages of HyperEVM while maintaining compatibility with existing DeFi infrastructure. The modular design enables rapid iteration and scaling while providing institutional-grade security and performance.</p>
+            
+            <p>By combining native HyperCore integration with advanced yield optimization and risk management, HyperFlow creates a technical foundation capable of supporting the next generation of DeFi applications on HyperEVM.</p>
+            
+            <hr style="margin: 40px 0; border: none; border-top: 1px solid #334155;">
+            
+            <p style="text-align: center; color: #64748b;"><strong>For the complete protocol overview, please refer to the <a href="https://clockerwork02.github.io" style="color: #14b8a6;">HyperFlow Protocol Whitepaper</a>.</strong></p>
+        </div>
     </div>
 </body>
 </html>
