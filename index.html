@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Technical Architecture - HyperFlow Protocol</title>
+    <!-- Cache bust: 2025-08-13T10:16:05.605Z -->
     <style>
         * {
             margin: 0;
@@ -229,83 +230,15 @@
             font-weight: 500;
         }
         
-        .feature-card {
-            background: rgba(15, 25, 45, 0.6);
-            border: 1px solid rgba(34, 211, 238, 0.2);
-            border-radius: 10px;
-            padding: 25px;
-            margin: 20px 0;
-            transition: all 0.3s ease;
-        }
-        
-        .feature-card:hover {
-            border-color: rgba(0, 212, 255, 0.4);
-            transform: translateX(5px);
-        }
-        
-        .feature-card h4 {
-            color: #22d3ee;
-            margin-bottom: 15px;
-        }
-        
-        hr {
-            margin: 50px 0;
-            border: none;
-            height: 2px;
-            background: linear-gradient(90deg, transparent 0%, #00d4ff 50%, transparent 100%);
-        }
-        
-        .footer-link {
-            text-align: center;
-            margin-top: 40px;
-        }
-        
-        .footer-link a {
-            color: #00d4ff;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-        }
-        
-        .footer-link a:hover {
-            color: #22d3ee;
-            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
-        }
-        
         @media (max-width: 768px) {
-            .container {
-                padding: 25px 15px;
-            }
-            
-            .content {
-                padding: 30px 25px;
-            }
-            
-            h1 {
-                font-size: 2.2rem;
-            }
-            
-            h2 {
-                font-size: 1.6rem;
-            }
-            
-            table {
-                font-size: 0.85rem;
-            }
-            
-            th, td {
-                padding: 10px 12px;
-            }
-            
-            .stats-grid {
-                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-                gap: 15px;
-            }
-            
-            .stat-value {
-                font-size: 1.8rem;
-            }
+            .container { padding: 25px 15px; }
+            .content { padding: 30px 25px; }
+            h1 { font-size: 2.2rem; }
+            h2 { font-size: 1.6rem; }
+            table { font-size: 0.85rem; }
+            th, td { padding: 10px 12px; }
+            .stats-grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; }
+            .stat-value { font-size: 1.8rem; }
         }
     </style>
 </head>
@@ -335,7 +268,7 @@
             <tr>
                 <td><strong>Base Blockchain</strong></td>
                 <td>HyperEVM</td>
-                <td>Ethereum-compatible execution with HyperCore integration</td>
+                <td>Ethereum-compatible with HyperCore integration</td>
             </tr>
             <tr>
                 <td><strong>Smart Contracts</strong></td>
@@ -345,12 +278,12 @@
             <tr>
                 <td><strong>Security Framework</strong></td>
                 <td>OpenZeppelin</td>
-                <td>Battle-tested security modules and patterns</td>
+                <td>Battle-tested security modules</td>
             </tr>
             <tr>
                 <td><strong>Native Precompiles</strong></td>
                 <td>HyperCore</td>
-                <td>Direct orderbook access and arbitrage execution</td>
+                <td>Direct orderbook access</td>
             </tr>
         </tbody>
     </table>
@@ -378,14 +311,9 @@
                 <td>AMM liquidity aggregation</td>
             </tr>
             <tr>
-                <td><strong>HyperBloom</strong></td>
-                <td>Direct Contract</td>
-                <td>Advanced AMM features and concentrated liquidity</td>
-            </tr>
-            <tr>
                 <td><strong>Chainlink</strong></td>
                 <td>Oracle Integration</td>
-                <td>Price feeds and automation triggers</td>
+                <td>Price feeds and automation</td>
             </tr>
             <tr>
                 <td><strong>LayerZero</strong></td>
@@ -396,45 +324,8 @@
     </table>
 </div>
 
-<h3>Advanced Features</h3>
-
-<div class="feature-card">
-    <h4>Delta-Neutral Yield Strategies</h4>
-    <p>Leveraging HyperEVM's unique architecture to create market-neutral positions that generate yield regardless of market direction through sophisticated arbitrage and hedging mechanisms.</p>
-</div>
-
-<div class="feature-card">
-    <h4>Cross-Chain Governance</h4>
-    <p>Multi-chain protocol governance participation through unified voting mechanisms and cross-chain message passing for seamless user experience.</p>
-</div>
-
-<div class="feature-card">
-    <h4>Real-World Asset Integration</h4>
-    <p>Tokenization and investment in RWA opportunities through secure bridging protocols and institutional partnerships for diversified yield sources.</p>
-</div>
-
-<div class="feature-card">
-    <h4>AI Strategy Creation</h4>
-    <p>Machine learning-powered yield optimization through automated strategy creation and real-time market adaptation for enhanced performance.</p>
-</div>
-
-<h3>Security & Risk Management</h3>
-
-<div class="highlight-section">
-    <h4>Multi-Layer Security Framework</h4>
-    <ul>
-        <li><strong>Smart Contract Audits:</strong> Comprehensive security reviews by leading audit firms</li>
-        <li><strong>Formal Verification:</strong> Mathematical proof of contract correctness</li>
-        <li><strong>Bug Bounty Programs:</strong> Community-driven security testing and rewards</li>
-        <li><strong>Emergency Procedures:</strong> Rapid response protocols for critical issues</li>
-        <li><strong>Insurance Coverage:</strong> Protocol and user fund protection mechanisms</li>
-    </ul>
-</div>
-
-<hr>
-
-<div class="footer-link">
-    <p><strong>For complete protocol details: <a href="https://clockerwork02.github.io">HyperFlow Protocol Whitepaper</a></strong></p>
+<div style="text-align: center; margin-top: 40px;">
+    <p><strong>For complete protocol details: <a href="https://clockerwork02.github.io" style="color: #00d4ff;">HyperFlow Protocol Whitepaper</a></strong></p>
 </div>
 
         </div>
