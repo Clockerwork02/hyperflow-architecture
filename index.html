@@ -81,6 +81,11 @@
             padding-left: 25px;
         }
         
+        ol {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+        
         li {
             margin-bottom: 8px;
             color: #cbd5e0;
@@ -251,20 +256,7 @@
 }</code></pre>
 </div>
 
-<h3>HyperCore Integration</h3>
-<p>Direct orderbook access through HyperEVM precompiles:</p>
-
-<div class="code-block">
-<pre><code>interface IHyperCorePrecompile {
-    function getOrderbookDepth(address market) external view returns (uint256, uint256);
-    function executeArbitrage(bytes calldata params) external returns (uint256);
-    function getDeltaNeutralPosition(address asset) external view returns (int256);
-}</code></pre>
-</div>
-
 <h2>Security Framework</h2>
-
-<h3>Smart Contract Security</h3>
 <div class="table-container">
     <h4>Security Measures</h4>
     <div class="table-responsive">
@@ -301,25 +293,6 @@
         </table>
     </div>
 </div>
-
-<h2>Risk Management</h2>
-<ul>
-    <li><strong>Oracle Security</strong>: Multi-source price feeds with deviation monitoring</li>
-    <li><strong>Circuit Breakers</strong>: Automatic pause on price deviation >5%</li>
-    <li><strong>Insurance Coverage</strong>: Third-party insurance for smart contract risks</li>
-    <li><strong>Reserve Funds</strong>: 5% treasury reserve for unexpected losses</li>
-    <li><strong>Rate Limiting</strong>: Maximum transfer amounts and delayed withdrawals</li>
-</ul>
-
-<h2>Integration Architecture</h2>
-<p>HyperFlow integrates with multiple DeFi protocols:</p>
-<ul>
-    <li><strong>HyperSwap</strong>: Primary DEX for liquidity operations</li>
-    <li><strong>HyperBloom</strong>: Lending protocol integration</li>
-    <li><strong>HyperCore</strong>: Native orderbook access</li>
-    <li><strong>LayerZero</strong>: Cross-chain messaging</li>
-    <li><strong>Chainlink</strong>: Price feeds and automation</li>
-</ul>
     </div>
 </body>
 </html>
