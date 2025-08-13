@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Technical Architecture - HyperFlow Protocol</title>
-    <!-- Teal Mint Design: 1755081237021 -->
+    <!-- ACTUAL Teal Mint Green: 1755081660482 -->
     <style>
         * {
             margin: 0;
@@ -14,8 +14,8 @@
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #0a1a1a 0%, #0f2020 50%, #0a1a1a 100%);
-            color: #e2f4f4;
+            background: linear-gradient(135deg, #042f2e 0%, #0a2e2a 50%, #042f2e 100%);
+            color: #f0fdfa;
             line-height: 1.6;
             min-height: 100vh;
         }
@@ -33,7 +33,7 @@
         
         .back-link {
             display: inline-block;
-            background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+            background: linear-gradient(135deg, #2dd4bf 0%, #14b8a6 100%);
             color: #ffffff;
             padding: 12px 24px;
             border-radius: 8px;
@@ -41,17 +41,17 @@
             margin-bottom: 30px;
             transition: all 0.3s ease;
             font-weight: 500;
-            box-shadow: 0 4px 15px rgba(20, 184, 166, 0.3);
+            box-shadow: 0 4px 15px rgba(45, 212, 191, 0.3);
         }
         
         .back-link:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(20, 184, 166, 0.4);
-            background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%);
+            box-shadow: 0 6px 20px rgba(45, 212, 191, 0.4);
+            background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
         }
         
         h1 {
-            background: linear-gradient(135deg, #14b8a6 0%, #10b981 50%, #059669 100%);
+            background: linear-gradient(135deg, #2dd4bf 0%, #99f6e4 50%, #14b8a6 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -69,8 +69,8 @@
         }
         
         .content {
-            background: rgba(15, 35, 35, 0.8);
-            border: 1px solid rgba(20, 184, 166, 0.15);
+            background: rgba(4, 47, 46, 0.8);
+            border: 1px solid rgba(45, 212, 191, 0.15);
             border-radius: 16px;
             padding: 50px;
             backdrop-filter: blur(20px);
@@ -78,11 +78,11 @@
         }
         
         h2 {
-            color: #14b8a6;
+            color: #2dd4bf;
             font-size: 2rem;
             font-weight: 700;
             margin: 40px 0 25px 0;
-            border-bottom: 2px solid rgba(20, 184, 166, 0.3);
+            border-bottom: 2px solid rgba(45, 212, 191, 0.3);
             padding-bottom: 10px;
         }
         
@@ -91,14 +91,14 @@
         }
         
         h3 {
-            color: #10b981;
+            color: #14b8a6;
             font-size: 1.5rem;
             font-weight: 600;
             margin: 30px 0 20px 0;
         }
         
         h4 {
-            color: #059669;
+            color: #0d9488;
             font-size: 1.2rem;
             font-weight: 600;
             margin: 25px 0 15px 0;
@@ -123,14 +123,14 @@
         }
         
         strong {
-            color: #14b8a6;
+            color: #2dd4bf;
             font-weight: 600;
         }
         
         .table-container {
             overflow-x: auto;
             border-radius: 12px;
-            border: 1px solid rgba(20, 184, 166, 0.25);
+            border: 1px solid rgba(45, 212, 191, 0.25);
             margin: 30px 0;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
@@ -138,11 +138,11 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            background: rgba(10, 25, 25, 0.9);
+            background: rgba(4, 47, 46, 0.9);
         }
         
         th {
-            background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+            background: linear-gradient(135deg, #2dd4bf 0%, #14b8a6 100%);
             color: #ffffff;
             padding: 16px 20px;
             text-align: left;
@@ -154,8 +154,8 @@
         
         td {
             padding: 14px 20px;
-            border-bottom: 1px solid rgba(20, 184, 166, 0.1);
-            color: #e2f4f4;
+            border-bottom: 1px solid rgba(45, 212, 191, 0.1);
+            color: #f0fdfa;
             font-size: 0.95rem;
         }
         
@@ -164,16 +164,16 @@
         }
         
         tr:hover {
-            background: rgba(20, 184, 166, 0.05);
+            background: rgba(45, 212, 191, 0.05);
         }
         
         tr:nth-child(even) {
-            background: rgba(15, 35, 35, 0.3);
+            background: rgba(4, 47, 46, 0.3);
         }
         
         .highlight-section {
-            background: linear-gradient(135deg, rgba(20, 184, 166, 0.08) 0%, rgba(16, 185, 129, 0.05) 100%);
-            border: 1px solid rgba(20, 184, 166, 0.2);
+            background: linear-gradient(135deg, rgba(45, 212, 191, 0.08) 0%, rgba(153, 246, 228, 0.05) 100%);
+            border: 1px solid rgba(45, 212, 191, 0.2);
             border-radius: 12px;
             padding: 30px;
             margin: 30px 0;
@@ -187,7 +187,7 @@
             left: 0;
             right: 0;
             height: 3px;
-            background: linear-gradient(90deg, #14b8a6 0%, #10b981 50%, #059669 100%);
+            background: linear-gradient(90deg, #2dd4bf 0%, #99f6e4 50%, #14b8a6 100%);
             border-radius: 12px 12px 0 0;
         }
         
@@ -199,8 +199,8 @@
         }
         
         .stat-item {
-            background: linear-gradient(135deg, rgba(20, 184, 166, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);
-            border: 1px solid rgba(20, 184, 166, 0.2);
+            background: linear-gradient(135deg, rgba(45, 212, 191, 0.1) 0%, rgba(153, 246, 228, 0.05) 100%);
+            border: 1px solid rgba(45, 212, 191, 0.2);
             border-radius: 12px;
             padding: 25px;
             text-align: center;
@@ -209,14 +209,14 @@
         
         .stat-item:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(20, 184, 166, 0.15);
+            box-shadow: 0 8px 25px rgba(45, 212, 191, 0.15);
         }
         
         .stat-value {
             display: block;
             font-size: 2.2rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #14b8a6 0%, #10b981 100%);
+            background: linear-gradient(135deg, #2dd4bf 0%, #99f6e4 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -231,41 +231,15 @@
             font-weight: 500;
         }
         
-        .feature-card {
-            background: rgba(15, 35, 35, 0.6);
-            border: 1px solid rgba(20, 184, 166, 0.2);
-            border-radius: 10px;
-            padding: 25px;
-            margin: 20px 0;
-            transition: all 0.3s ease;
-        }
-        
-        .feature-card:hover {
-            border-color: rgba(20, 184, 166, 0.4);
-            transform: translateX(5px);
-        }
-        
-        .feature-card h4 {
-            color: #10b981;
-            margin-bottom: 15px;
-        }
-        
-        hr {
-            margin: 50px 0;
-            border: none;
-            height: 2px;
-            background: linear-gradient(90deg, transparent 0%, #14b8a6 50%, transparent 100%);
-        }
-        
         a {
-            color: #14b8a6;
+            color: #2dd4bf;
             text-decoration: none;
             transition: all 0.3s ease;
         }
         
         a:hover {
-            color: #10b981;
-            text-shadow: 0 0 10px rgba(20, 184, 166, 0.5);
+            color: #99f6e4;
+            text-shadow: 0 0 10px rgba(45, 212, 191, 0.5);
         }
         
         @media (max-width: 768px) {
@@ -322,41 +296,6 @@
                 <td><strong>Native Precompiles</strong></td>
                 <td>HyperCore</td>
                 <td>Direct orderbook access</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-
-<h3>Integration Architecture</h3>
-<div class="table-container">
-    <table>
-        <thead>
-            <tr>
-                <th>Protocol</th>
-                <th>Integration Type</th>
-                <th>Functionality</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><strong>HyperCore</strong></td>
-                <td>Native Precompile</td>
-                <td>Orderbook trading, delta-neutral strategies</td>
-            </tr>
-            <tr>
-                <td><strong>HyperSwap</strong></td>
-                <td>Direct Contract</td>
-                <td>AMM liquidity aggregation</td>
-            </tr>
-            <tr>
-                <td><strong>Chainlink</strong></td>
-                <td>Oracle Integration</td>
-                <td>Price feeds and automation</td>
-            </tr>
-            <tr>
-                <td><strong>LayerZero</strong></td>
-                <td>Cross-chain Messaging</td>
-                <td>Multi-chain asset bridging</td>
             </tr>
         </tbody>
     </table>
